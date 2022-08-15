@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PoorSocial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+</head>
+
+<body onload="role('<%= user.role %>')">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-6">
+                <h3>Quản lý thông báo</h3>
+            </div>
+            <div class="col-6">
+                <div class="dropdown text-right">
+                    <img src="/<%= user.email %>/avt/<%= user.img %>.jpg" width="80" height="80" alt="">
+                    Xin chào <a class="dropdown-toggle text-primary" data-toggle="dropdown"><%= user.name %></a>
+                    <div class="dropdown-menu">
+                        <div class="admin">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/updateprofile1">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/user/updateprofile2">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/user/updateprofile3">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/register">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Tạo tài khoản
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/an/department">
+                                <i class="far fa-building"></i>
+                                &nbsp;&nbsp;Quản lý thông báo
+                            </a>
+                        </div>
+                        <a class="dropdown-item" href="/an/announcement">
+                            <i class="fa fa-bullhorn"></i>
+                            &nbsp;&nbsp;Thông báo
+                        </a>
+                        <a class="dropdown-item" href="/user/logout">
+                            <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/an/room">Phòng ban</a></li>
+        </ol>
+        <div class="col-12">
+            <div class="manager">
+                <div class="post mb-3">
+                    <input data-backdrop="false" type="text" class="post__input form-control " data-toggle="modal"
+                      data-target="#postArticleModal" placeholder="Viết thông báo" aria-describedby="basic-addon1" />
+                  </div>
+                  <div class="modal fade show" id="postArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form class="modal-content" action="/an/department" method="POST">
+                            <div class="modal-body">
+                                <div class="input-group mb-3">
+                                <div class="container article ">
+                                    <input type="hidden" name="postEmail" value="<%= user.email %>">
+                                    <input type="hidden" name="postName" value="<%= user.name %>">
+                                    <input type="hidden" name="postDepart" value="<%= user.department %>">
+                                    <input type="text" name="postTitle" placeholder="Tiêu đề">
+                                    <div class="row m-2"> <textarea type="text" class="form-control" name="content" style="height: 120px;"
+                                        placeholder="Viết thông báo"></textarea>
+                                    </div>
+                                    <div class="row m-2">
+                                        <div class="custom-file">
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary btn-post-article">Đăng</button>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <h2>Phòng ban: <%= user.department %></h2>
+            <h3>Thông báo đã đăng</h3>
+            <% if(announce){%>
+                <% announce.forEach(announ => { %>
+                    <% if (announ.email==user.email) {%>
+                        <div class="card article">
+                            <div class="card-header">
+                            <div class="header-group ml-2">
+                                <span class="group-title"><strong><%= announ.title %></strong></span>
+                                <p class="group-subtitle mb-2 text-muted"><%= announ.createAt.toLocaleString()%> </p>
+                            </div>
+                    
+                            <div class="dropdown" style="margin-left: auto;">
+                                <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                    
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    
+                                <a class="dropdown-item btn-del" href="/an/department/delete/<%= announ.id %>"><i
+                                    class="fas fa-trash-alt btn-del"></i></a>
+                    
+                                <a class="dropdown-item btn-edit" onclick="editAnnoun('<%= announ.id %>')" name="btn-edit-article"
+                                    data-toggle="modal" data-target="#editArticleModal">
+                                    <i class=" fas fa-edit btn-edit"></i></a>
+                    
+                                </div>
+                            </div>
+                    
+                            </div>
+                    
+                            <div class="card-body">
+                            <p class="card-text">
+                                <%= announ.content %>
+                            </p>
+                            <div class="creator"><p>Người đăng: <%= announ.name %></p></div>
+                            </div>
+                        </div>
+                        <br><br>
+                    <% } %>
+                <% }); %>
+                <%} %>
+        </div>
+
+        <div class="modal fade show" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <form class="modal-content edit-modal" method="POST">
+                <div class="modal-header">
+                <h5 class="modal__title" id="exampleModalLabel">Edit post</h5>
+                </div>
+                <div class="modal-body" style="margin-bottom: -10px;">
+                    <div class=" input-group mb-3">
+                        <div class="container edit-article ">
+                        <input type="text" name="postTitle" placeholder="Tiêu đề">
+                        <div class="row m-2"> <textarea type="text" class="form-control" name="content" style="height: 120px;"
+                            placeholder="Viết thông báo"></textarea>
+                        </div>
+                        <div class="row m-2">
+                            <div class="custom-file">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=" modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-update-article">Update</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <input type="hidden" id="roleweb" value="<%= user.role %>">
+    </div>
+
+
+    <script src="/javascripts/main.js"></script>
+    <script>
+        function editAnnoun(id) {
+            let announce = `<%- JSON.stringify(announce) %>`
+            announce = JSON.parse(announce)
+            announce.forEach(announ => {
+                if (announ._id == id) {
+                    const content = announ.content
+                    const postTitle = announ.title
+                    console.log(content)
+                    $('[name="content"]').val(content)
+                    $('[name="postTitle"]').val(postTitle)
+                    $('.edit-modal').attr("action", `/an/department/update/${id}` + "?_method=PUT")
+                    $(document).ready(e => {})
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

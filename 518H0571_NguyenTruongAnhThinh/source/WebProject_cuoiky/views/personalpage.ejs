@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PoorSocial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+</head>
+
+<body onload="role('<%= user.role %>')">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-6">
+                <h3><i class="fas fa-bed"></i>PoorSocial</h2>
+            </div>
+            <div class="col-6">
+                <div class="dropdown text-right">
+                    <img src="/<%= user.email %>/avt/<%= user.img %>.jpg" width="80" height="80" alt="">
+                    Xin chào <a class="dropdown-toggle text-primary" data-toggle="dropdown"><%= user.name %></a>
+                    <div class="dropdown-menu">
+                        <div class="admin">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/updateprofile1">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin 
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/user/updateprofile2">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/user/updateprofile3">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/register">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Tạo tài khoản
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/an/department">
+                                <i class="far fa-building"></i>
+                                &nbsp;&nbsp;Quản lý thông báo
+                            </a>
+                        </div>
+                        <a class="dropdown-item" href="/an/announcement">
+                            <i class="fa fa-bullhorn"></i>
+                            &nbsp;&nbsp;Thông báo
+                        </a>
+                        <a class="dropdown-item" href="/user/logout">
+                            <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/an/room">Phòng ban</a></li>
+        </ol>
+
+        <div class="row">
+                <div class="col-8">
+                    <% if (user.email==useremailid) { %>
+                        <div class="post mb-3">
+                            <img src="/<%= user.email %>/avt/<%= user.img %>.jpg" alt="" class="header__icon" width="60" height="60">
+                            <input data-backdrop="false" type="text" class="post__input form-control " data-toggle="modal"
+                            data-target="#postArticleModal" placeholder="Bạn đang nghĩ gì? " aria-describedby="basic-addon1" />
+                        </div>
+                    <% }else { %>
+                        <% postt.every(post => { %>
+                            <% if (post.email==useremailid) {%>
+                                <div class="post mb-3">
+                                    <img src="/<%= post.email %>/avt/<%= post.imgavt %>.jpg" alt="" class="header__icon" width="60" height="60">
+                                    <h2><%= post.name %></h2>
+                                </div>
+                                <% return false; %>
+                            <% } %>
+                        <% }) %>
+                    <% } %>
+                    <div class="modal fade show" id="postArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form class="modal-content" action="/post/" method="POST">
+                                <div class="modal-body">
+                                    <div class="input-group mb-3">
+                                    <div class="container article ">
+                                        <input type="hidden" name="postEmail" value="<%= user.email %>">
+                                        <input type="hidden" name="postName" value="<%= user.name %>">
+                                        <div class="row m-2"> <textarea type="text" class="form-control" name="content" style="height: 120px;"
+                                            placeholder="Bạn đang nghĩ gì?"></textarea>
+                                        </div>
+                                        <div class="row m-2">
+                                            <div class="custom-file">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    <button type="submit" class="btn btn-primary btn-post-article">Đăng</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <% if(postt){%>
+                    <% postt.forEach(post => { %>
+                        <% if (post.email==useremailid) {%>
+                        <div class="card article">
+                            <div class="card-header">
+                    
+                            <img src="/<%= post.email %>/avt/<%= post.imgavt %>.jpg" alt="" class="header-icon" width="60" height="60">
+                            <div class="header-group ml-2">
+                                <span class="group-title"><strong><%= post.name %></strong></span>
+                                <p class="group-subtitle mb-2 text-muted"><%= post.createAt.toLocaleString()%> </p>
+                            </div>
+                            
+                            <% if (post.email==user.email || user.role=="admin") {%>
+                                <div class="dropdown" style="margin-left: auto;">
+                                    <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                        
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        
+                                    <a class="dropdown-item btn-del" href="/post/delete/<%= post.id %>"><i
+                                        class="fas fa-trash-alt btn-del"></i></a>
+                        
+                                    <a class="dropdown-item btn-edit" onclick="editArticle('<%= post.id %>')" name="btn-edit-article"
+                                        data-toggle="modal" data-target="#editArticleModal">
+                                        <i class=" fas fa-edit btn-edit"></i></a>
+                        
+                                    </div>
+                                </div>
+                            <% } %>
+                            </div>
+                    
+                            <div class="card-body">
+                            <p class="card-text">
+                                <%= post.content %>
+                            </p>
+                            <% if (post.imageSrc){ %>
+                    
+                            <img src="<%=post.imageSrc%>" alt="img" class="card-image" id="<%= post.id %>">
+                            <% } %>
+                    
+                            </div>
+                            <div class="card-footer mt-3">
+                            <button class="btn like btn-outline-primary">Like</button>
+                            <button class="btn cmt btn-outline-success">Comment</button>
+                            </div>
+                        </div>
+                        <% } %>
+                    <% }); %>
+                    <%} %>
+                </div>
+                
+            <div class="col-4">
+                <table class="table table-bordered">
+                    <% if(accountt){%>
+                        <% accountt.forEach(acco => { %>
+                            <% if (acco.email==useremailid && acco.role=='student') { %>
+                                <tr>
+                                    <th>Khoa:</th>
+                                    <td><%= acco.department %></td>
+                                </tr>
+                                <tr>
+                                    <th>Lớp:</th>
+                                    <td><%= acco.class %></td>
+                                </tr>
+                            <% } %>
+
+                        <% }); %>
+                    <% }; %>
+                  </table>
+            </div>
+        </div>
+
+    <div class="modal fade show" id="editArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <form class="modal-content edit-modal" method="POST">
+            <div class="modal-header">
+            <h5 class="modal__title" id="exampleModalLabel">Edit post</h5>
+            </div>
+            <div class="modal-body" style="margin-bottom: -10px;">
+                <div class=" input-group mb-3">
+                    <div class="container edit-article ">
+                    <div class="row m-2"> <textarea type="text" class="form-control" name="content" style="height: 120px;"
+                        placeholder="Bạn đang nghĩ gì?"></textarea>
+                    </div>
+                    <div class="row m-2">
+                        <div class="custom-file">
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-update-article">Update</button>
+            </div>
+        </form>
+        </div>
+    </div>
+
+        <input type="hidden" id="roleweb" value="<%= user.role %>">
+    </div>
+
+    <script src="/javascripts/main.js"></script>
+    <script>
+        function editArticle(id) {
+            let postt = `<%- JSON.stringify(postt) %>`
+            postt = JSON.parse(postt)
+            postt.forEach(post => {
+            if (post._id == id) {
+                const content = postt.content
+                console.log(content)
+                const imageSrc = $(`[id=${id}]`).attr("src")
+                $('[name="content"]').val(content)
+                $('.container.edit-article').append("<img class='edit-image'> </img>")
+
+                $('.edit-modal').attr("action", `/post/update/${id}` + "?_method=PUT")
+                $(document).ready(e => {
+                $('.edit-image').attr("src", imageSrc)
+                })
+            }
+            })
+
+        }
+        $("#editArticleModal").on("hidden.bs.modal", function () {
+            $('.edit-image').remove()
+            $('[name="edit-content"]').val("")
+
+        });
+    </script>
+
+</body>
+
+</html>

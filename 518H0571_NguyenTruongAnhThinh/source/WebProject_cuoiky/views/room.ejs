@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PoorSocial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+</head>
+
+<body onload="role('<%= user.role %>')">
+    <div class="container">
+        <div class="row align-items-center py-5">
+            <div class="col-6">
+                <h3>Dang sách phòng ban</h3>
+            </div>
+            <div class="col-6">
+                <div class="dropdown text-right">
+                    <img src="/<%= user.email %>/avt/<%= user.img %>.jpg" width="80" height="80" alt="">
+                    Xin chào <a class="dropdown-toggle text-primary" data-toggle="dropdown"><%= user.name %></a>
+                    <div class="dropdown-menu">
+                        <div class="admin">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/post/personalpage?useremailid=<%= user.email%>">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Trang cá nhân
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/updateprofile1">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/user/updateprofile2">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="student">
+                            <a class="dropdown-item" href="/user/updateprofile3">
+                                <i class="fas fa-info-circle"></i>
+                                &nbsp;&nbsp;Cập nhật thông tin
+                            </a>
+                        </div>
+                        <div class="admin">
+                            <a class="dropdown-item" href="/user/register">
+                                <i class="fas fa-user"></i>
+                                &nbsp;&nbsp;Tạo tài khoản
+                            </a>
+                        </div>
+                        <div class="manager">
+                            <a class="dropdown-item" href="/an/department">
+                                <i class="far fa-building"></i>
+                                &nbsp;&nbsp;Quản lý thông báo
+                            </a>
+                        </div>
+                        <a class="dropdown-item" href="/an/announcement">
+                            <i class="fa fa-bullhorn"></i>
+                            &nbsp;&nbsp;Thông báo
+                        </a>
+                        <a class="dropdown-item" href="/user/logout">
+                            <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp; Đăng xuất</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+            <li class="breadcrumb-item"><a href="/an/room">Phòng ban</a></li>
+        </ol>
+        <div class="col-12">
+            <div>
+                <h3>Phòng công tác học sinh sinh viên</h3>
+                <a href="/an/roomdetail?roomTitle=Công tác học sinh sinh viên">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Phòng đại học</h3>
+                <a href="/an/roomdetail?roomTitle=Đại học">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Phòng sau đại học</h3>
+                <a href="/an/roomdetail?roomTitle=Sau đại học">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Phòng điện toán và máy tính</h3>
+                <a href="/an/roomdetail?roomTitle=Điện toán và máy tính">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Phòng khảo thí và kiểm định chất lượng</h3>
+                <a href="/an/roomdetail?roomTitle=Khảo thí và kiểm định chất lượng">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Phòng tài chính</h3>
+                <a href="/an/roomdetail?roomTitle=Tài chính">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>TDT Creative Language Center</h3>
+                <a href="/an/roomdetail?roomTitle=TDT Creative Language">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Trung tâm tin học</h3>
+                <a href="/an/roomdetail?roomTitle=Trung tâm tin học">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Trung tâm đào tạo phát triển xã hội</h3>
+                <a href="/an/roomdetail?roomTitle=Trung tâm đào tạo phát triển xã hội">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Trung tâm phát triển Khoa học công nghệ</h3>
+                <a href="/an/roomdetail?roomTitle=Trung tâm phát triển khoa học công nghệ">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa Mỹ thuật công nghiệp</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa mỹ thuật công nghiệp">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa Điện - Điện tử</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa điện-điện tử">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa Công nghệ thông tin</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa công nghệ thông tin">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa Quản trị kinh doanh</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa quản trị kinh doanh">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa khoa học ứng dụng</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa khoa học ứng dụng">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa khoa học thể thao</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa khoa học thể thao">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa luật</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa luật">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa ngoại ngữ</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa ngoại ngữ">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa toán thống kê</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa toán thống kê">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa dược</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa dược">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa kỹ thuật công trình</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa kỹ thuật công trình">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa khoa học xã hội và nhân văn</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa khoa học xã hội và nhân văn">Xem thêm</a>
+            </div>
+            <hr>
+            <div>
+                <h3>Khoa tài chính - ngân hàng</h3>
+                <a href="/an/roomdetail?roomTitle=Khoa tài chính - ngân hàng">Xem thêm</a>
+            </div>
+            <hr>
+        </div>
+
+
+        <input type="hidden" id="roleweb" value="<%= user.role %>">
+    </div>
+
+
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

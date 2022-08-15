@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PoorSocial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css    ">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"/>
+</head>
+
+<body class="bg-secondary">
+
+  <h3 class="text-center my-5 text-light">Account Registration</h3>
+
+  <!-- buộc toàn bộ dòng và cột phải bỏ trong class container -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-5">
+        <div class="border p-3 rounded bg-light">
+          <form method="post">
+            <div class="form-group">
+              <label for="user">Tên người dùng</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input name="name" id="name" type="text" class="form-control" placeholder="Your Name">
+              </div>
+            <div class="form-group">
+              <label for="user">Username</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input name="email" id="email" type="text" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="department">Chọn phòng ban:</label>
+              <select name="department" id="department">
+                <option value="Công tác học sinh sinh viên">Công tác học sinh sinh viên</option>
+                <option value="Đại học">Đại học</option>
+                <option value="Sau đại học">Sau đại học</option>
+                <option value="Điện toán và máy tính">Điện toán và máy tính</option>
+                <option value="Khảo thí và kiểm định chất lượng">Khảo thí và kiểm định chất lượng</option>
+                <option value="Tài chính">Tài chính</option>
+                <option value="TDT Creative Language Center">TDT Creative Language Center</option>
+                <option value="Tung tâm tin học">Trung tâm tin học</option>
+                <option value="Trung tâm đào tạo phát triển xã hội">Trung tâm đào tạo phát triển xã hội</option>
+                <option value="Trung tâm phát triển khoa học công nghệ">Trung tâm phát triển Khoa học công nghệ</option>
+                <option value="Khoa mỹ thuật công nghiệp">Khoa Mỹ thuật công nghiệp</option>
+                <option value="Khoa điện-điện tử">Khoa Điện - Điện tử</option>
+                <option value="Khoa công nghệ thông tin">Khoa Công nghệ thông tin</option>
+                <option value="Khoa quản trị kinh doanh">Khoa Quản trị kinh doanh</option>
+                <option value="Khoa khoa học ứng dụng">Khoa khoa học ứng dụng</option>
+                <option value="Khoa khoa học thể thao">Khoa khoa học thể thao</option>
+                <option value="Khoa luật">Khoa luật</option>
+                <option value="Khoa ngoại ngữ">Khoa ngoại ngữ</option>
+                <option value="Khoa toán thống kê">Khoa toán thống kê</option>
+                <option value="Khoa dược">Khoa dược</option>
+                <option value="Khoa kỹ thuật công trình">Khoa kỹ thuật công trình</option>
+                <option value="Khoa khoa học xã hội và nhân văn">Khoa khoa học xã hội và nhân văn</option>
+                <option value="Khoa tài chính - ngân hàng">Khoa tài chính - ngân hàng</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="pass">Password</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input name="password" type="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pass">Confirm Password</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </div>
+                <input name="rePassword" type="password" class="form-control" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <% if (error.length>0){ %>
+                <div class="alert alert-danger alert-dismissible fade show">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <%= error %>
+                </div>
+              <% } %>
+            </div>
+            <div class="form-group">
+              <input type="button" onclick="location.href='/';" value="Go to Homepage" />
+              <button class="btn btn-success px-5" type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

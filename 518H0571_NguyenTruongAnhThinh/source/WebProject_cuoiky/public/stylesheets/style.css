@@ -1,0 +1,23 @@
+div.admin {
+    display: none;
+}
+
+div.manager {
+    display: none;
+}
+
+div.student {
+    display: none;
+}
+
+td {
+    text-align: left;
+}
+
+div.creator {
+    text-align: right;
+}
+
+div.cmt {
+    display: none;
+}
